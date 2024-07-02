@@ -5,5 +5,8 @@ export interface IKoaContext extends Context {
 }
 
 export interface IUserContext {
-    id: number
+    id?: number,
+    username: string,
+    email: string,
+    rolesbit: number,
 }

@@ -11,7 +11,6 @@ const config = {
     port,
     tokens: {
       accessJWTSecret: process.env.ACCESS_JWT_SECRET || "accessJWTSecret!",
-      refreshJWTSecret: process.env.REFRESH_JWT_SECRET || "refreshJWTSecret!"
     }
   },
   postgres: {

@@ -25,9 +25,6 @@ export const connectDB = async (count = 0) => {
       } else {
         await sequelize.sync()
       }
-      if (process.env.FIRST_START === "true") {
-        await sequelize.sync({ force: true })
-      }
     })
     .catch((error) => {
       if (count <= 10) {
