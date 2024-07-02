@@ -3,6 +3,7 @@ import cors from "@koa/cors"
 import bodyParser from "koa-body"
 import errorMiddleware from "@/middlewares/errorMiddleware"
 import path from "path"
+import routes from "@/routes"
 
 const app = new Koa()
 
@@ -28,5 +29,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(errorMiddleware)
+
+app.use(routes.routes())
+  .use(routes.allowedMethods())
 
 export default app

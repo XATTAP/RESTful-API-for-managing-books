@@ -22,4 +22,14 @@ router.get("/", (ctx) => {
 
 router.use(userRoutes.routes())
 
+if (process.env.CONSOLE_URL === "true") {
+  console.log("available routes:")
+  let i = 0
+  router.stack.forEach((r) => {
+    if (r.methods && (!r.path.includes("[^/]"))) {
+      console.log(`${++i}. ${r.methods} url = ${r.path} `)
+    }
+  })
+}
+
 export default router
