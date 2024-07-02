@@ -1,0 +1,21 @@
+# Уровень разработки
+NODE_ENV = development
+
+#Порт, на котором запущен сервер
+SERVER_PORT = 4000
+
+# Параметры postgress
+PG_HOST = 'localhost'
+PG_PORT = 5432
+PG_USER = postgres
+PG_DATABASE = test
+PG_PASSWORD = postgres
+
+# Подробный вывод sequelize в консоль 
+SEQUELIZE_LOG = false 
+
+# Вывод всех существующих роутов в консоль
+CONSOLE_URL = false 
+
+#Удалить базу и поднять ее из сидов
+FORCE_DB = false

@@ -1,0 +1,38 @@
+{
+  "name": "test_work",
+  "version": "1.0.0",
+  "description": "RESTful API for managing a collection of books",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^5.0.0",
+    "@types/koa": "^2.15.0",
+    "@types/koa-bodyparser": "^4.3.12",
+    "dotenv": "^16.4.5",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-bodyparser": "^4.4.1",
+    "sequelize-typescript": "^2.1.6"
+  },
+  "devDependencies": {
+    "@types/koa__cors": "^5.0.0",
+    "nodemon": "^3.1.4"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run serve",
+    "ext": "ts"
+  }
+}
