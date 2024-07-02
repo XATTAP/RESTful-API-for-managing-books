@@ -4,7 +4,6 @@ import { type IKoaContext } from "@/interfaces/index"
 import { type Next } from "koa"
 import { AuthenticationError } from "@/utils/errors"
 import { type JwtPayload } from "jsonwebtoken"
-import Token from "@/db/models/Token.model"
 import User from "@/db/models/User.model"
 
 export default async (ctx: IKoaContext, next: Next) => {
@@ -24,8 +23,7 @@ export default async (ctx: IKoaContext, next: Next) => {
     const payload = jwt.verify(token, config.server.tokens.accessJWTSecret) as JwtPayload
 
     if (payload.userId) {
-      const tokenFromDB = await Token.findOne({ where: { userId: payload.userId } })
-      const user: User = await User.findOne({ where: { id: tokenFromDB.userId } })
+      const user: User = await User.findOne({ where: { id: payload.userId } })
       ctx.user = user
       return next()
     } else {
