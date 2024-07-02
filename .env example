@@ -8,8 +8,8 @@ SERVER_PORT = 4000
 PG_HOST = 'localhost'
 PG_PORT = 5432
 PG_USER = postgres
-PG_DATABASE = test
 PG_PASSWORD = postgres
+PG_DATABASE = test
 
 # Подробный вывод sequelize в консоль 
 SEQUELIZE_LOG = false 
