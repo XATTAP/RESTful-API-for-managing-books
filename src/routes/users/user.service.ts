@@ -21,11 +21,18 @@ class UserService {
 
     const accessToken = jwt.sign({ userId: foundUser.id }, config.server.tokens.accessJWTSecret, { expiresIn: "1d" })
 
-    ctx.cookies.set('Authorization', `Bearer ${accessToken}`, {
-      httpOnly: true,
-      expires: new Date(new Date().valueOf() + 864e5),
-      secure: true
-    });
+    if (config.env == "production"){
+      ctx.cookies.set('Authorization', `Bearer ${accessToken}`, {
+        httpOnly: true,
+        expires: new Date(new Date().valueOf() + 864e5),
+        secure: true
+      });
+    } else {
+      ctx.cookies.set('Authorization', `Bearer ${accessToken}`, {
+        httpOnly: true,
+        expires: new Date(new Date().valueOf() + 864e5)
+      });
+    }    
 
     return { message: "вход выполнен успешно!", accessToken }
   }
