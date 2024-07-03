@@ -40,12 +40,12 @@ class UserService {
     const foundUser = await User.scope("withPassword").findOne({ where: { username: body.username } })
 
     if (!foundUser) {
-      throw new NotFoundError("404", "Пользователь не найден")
+      throw new NotFoundError("401", "Неверный логин")
     }
 
     const isPassEquals = await bcrypt.compare(body.password, foundUser.password)
     if (!isPassEquals) {
-      throw new ServerValidationError("400", "Неверный пароль")
+      throw new ServerValidationError("401", "Неверный пароль")
     }
 
     const accessToken = jwt.sign({ userId: foundUser.id }, config.server.tokens.accessJWTSecret, { expiresIn: "1d" })
