@@ -1,6 +1,7 @@
 import Router from "koa-router"
 import { type Context, type DefaultState } from "koa"
 import userRoutes from "@/routes/users"
+import bookRoutes from "@/routes/books"
 
 const router = new Router<DefaultState, Context>()
 
@@ -21,6 +22,7 @@ router.get("/", (ctx) => {
 })
 
 router.use(userRoutes.routes())
+router.use(bookRoutes.routes())
 
 if (process.env.CONSOLE_URL === "true") {
   console.log("available routes:")
