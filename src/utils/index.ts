@@ -16,7 +16,7 @@ export enum GenreName {
   ScienceFiction  = "научная фантастика",
   Fantasy  = "фэнтези",
   Romance  = "романтика",
-  HistoricalFiction  = "историческая художественная литература",
+  HistoricalFiction  = "историческая литература",
   Horror  = "ужасы",
   Biography  = "биография",
   Autobiography  = "автобиография",

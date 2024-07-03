@@ -13,7 +13,7 @@ import {
 
 class Genre extends Model {
   @AllowNull(false)
-  @Column(DataType.ENUM({ values: Object.keys(GenreName) }))
+  @Column(DataType.ENUM({ values: Object.values(GenreName) }))
   genre: GenreName
 
   @AllowNull(false)
