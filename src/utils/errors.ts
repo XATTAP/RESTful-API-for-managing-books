@@ -60,3 +60,15 @@ export class AuthenticationError extends ApiError {
     this.type = type
   }
 }
+
+export class ForbiddenError extends ApiError {
+  constructor (errorCode?: string, message?: string, type?: string) {
+    super(...arguments)
+
+    this.name = "ForbiddenError"
+    this.message = message || "Недостаточно прав для выполнения действия"
+    this.status = 403
+    this.errorCode = errorCode
+    this.type = type
+  }
+}

@@ -13,6 +13,6 @@ router.get("/verify", verify)
 
 router.post("/login", login)
 
-router.get("/me",checkAuth, me)
+router.get("/me", checkAuth, me)
 
 export default router

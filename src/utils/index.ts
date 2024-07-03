@@ -3,6 +3,11 @@ import { genSalt, hash } from "bcrypt"
 import nodemailer from "nodemailer"
 import jwt from "jsonwebtoken"
 
+export enum Role {
+  User = 1 << 0,
+  Admin = 1 << 1,
+}
+
 export const generateHash = async (str: string, depth = 10) => {
   if (!str) return
 
