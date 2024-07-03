@@ -8,6 +8,24 @@ export enum Role {
   Admin = 1 << 1,
 }
 
+export enum GenreName {
+  Fiction = "художественная литература",
+  NonFiction = "нехудожественная литература",
+  Mystery  = "детектив",
+  Thriller  = "триллер",
+  ScienceFiction  = "научная фантастика",
+  Fantasy  = "фэнтези",
+  Romance  = "романтика",
+  HistoricalFiction  = "историческая художественная литература",
+  Horror  = "ужасы",
+  Biography  = "биография",
+  Autobiography  = "автобиография",
+  Memoir  = "мемуары",
+  Poetry  = "поэзия",
+  Drama  = "драма",
+  Comedy  = "комедия"
+}
+
 export const generateHash = async (str: string, depth = 10) => {
   if (!str) return
 
