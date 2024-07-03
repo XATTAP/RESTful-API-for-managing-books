@@ -25,7 +25,11 @@ class Book extends Model {
   @Column(DataType.DATE)
   publicationDate: Date
 
-  @HasMany(() => Genre,'bookId')
+  @HasMany(() => Genre,{
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+    foreignKey: "bookId"
+  })
   genres: Genre[]
 }
 
