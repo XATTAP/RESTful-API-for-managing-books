@@ -4,12 +4,12 @@ import bcrypt from "bcrypt"
 import jwt, { JwtPayload } from "jsonwebtoken"
 import { IKoaContext } from "@/interfaces"
 import { Op } from "sequelize"
-import { ILoginDTO, IRegisterDTO, IUserVerifyDTO } from "@/routes/users/dtos/index"
+import { ILoginDTO, IRegisterDTO, IUpdateRoleDTO, IUserVerifyDTO } from "@/routes/users/dtos/index"
 import { NotFoundError, ServerValidationError } from "@/utils/errors"
-import { generateHash, sendVerifyMail } from "@/utils"
+import { Role, generateHash, sendVerifyMail } from "@/utils"
 
 class UserService {
-  async register(ctx: IKoaContext, body: IRegisterDTO) {
+  async register(body: IRegisterDTO) {
 
     const foundUser = await User.findOne({
       where:
@@ -81,6 +81,19 @@ class UserService {
     } else {
       throw new ServerValidationError("400", "Неверный токен")
     }
+  }
+  
+  async updateRole(userId: number, body: IUpdateRoleDTO) {
+    const user = await User.findOne({ where: { id: userId } })
+
+    if (!user) {
+      throw new NotFoundError("404", "Пользователь не найден")
+    }
+
+    user.role = body.role
+    user.save()
+
+    return {message: "Роли обновлены", user}
   }
 }
 export const usersFactory = () => new UserService()

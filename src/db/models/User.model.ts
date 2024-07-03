@@ -37,7 +37,7 @@ import {
     @AllowNull(false)
     @Default(1)
     @Column(DataType.INTEGER)
-    rolesbit: number
+    role: number
 
     @AllowNull(false)
     @Default(false)

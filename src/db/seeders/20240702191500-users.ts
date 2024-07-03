@@ -7,7 +7,7 @@ async function initSeeds() {
     {
       username: "Иван Иванович",
       email: "ii@mail.ru",
-      rolesbit: 1,
+      role: 1,
       password: await generateHash("123456"),
       isActive: true,
       createdAt: new Date(),
@@ -16,7 +16,7 @@ async function initSeeds() {
     {
       username: "Петр Петрович",
       email: "pp@mail.ru",
-      rolesbit: 3,
+      role: 3,
       password: await generateHash("123456"),
       isActive: true,
       createdAt: new Date(),
@@ -35,7 +35,7 @@ export const up = async ({ context: sequelize }) => {
 
 export const down = async ({ context: sequelize }) => {
   await initSeeds()
-  await sequelize.getQueryInterface().bulkDelete(User.tableName,  {
+  await sequelize.getQueryInterface().bulkDelete(User.tableName, {
     username: seedUsers.map((user: User) => user.username)
   })
 }

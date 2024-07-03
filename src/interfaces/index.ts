@@ -8,5 +8,5 @@ export interface IUserContext {
     id?: number,
     username: string,
     email: string,
-    rolesbit: number,
+    role: number,
 }

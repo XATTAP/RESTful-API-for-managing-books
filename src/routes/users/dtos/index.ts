@@ -1,5 +1,5 @@
 import { ServerValidationError } from "@/utils/errors"
-import { type ValidationArguments, IsDefined, IsString, IsEmail } from "class-validator"
+import { type ValidationArguments, IsDefined, IsString, IsEmail, IsNumber } from "class-validator"
 
 export class IRegisterDTO {
   @IsDefined({
@@ -37,7 +37,7 @@ export class IRegisterDTO {
     }
   })
   password: string
-  
+
   @IsDefined({
     message: (args: ValidationArguments) => {
       throw new ServerValidationError(
@@ -58,7 +58,7 @@ export class IRegisterDTO {
     message: (args: ValidationArguments) => {
       throw new ServerValidationError(
         "400",
-          `Поле ${args.property}, должно иметь вид email`
+        `Поле ${args.property}, должно иметь вид email`
       )
     }
   })
@@ -104,5 +104,41 @@ export class ILoginDTO {
 }
 
 export class IUserVerifyDTO {
+  @IsDefined({
+    message: (args: ValidationArguments) => {
+      throw new ServerValidationError(
+        "400",
+        `Отсутствует обязательное поле ${args.property}`
+      )
+    }
+  })
+  @IsString({
+    message: (args: ValidationArguments) => {
+      throw new ServerValidationError(
+        "400",
+        `Неверный формат поля ${args.property}, ожидался string`
+      )
+    }
+  })
   emailToken: string
+}
+
+export class IUpdateRoleDTO {
+  @IsDefined({
+    message: (args: ValidationArguments) => {
+      throw new ServerValidationError(
+        "400",
+        `Отсутствует обязательное поле ${args.property}`
+      )
+    }
+  })
+  @IsNumber({}, {
+    message: (args: ValidationArguments) => {
+      throw new ServerValidationError(
+        "400",
+        `Неверный формат поля ${args.property}, ожидался number`
+      )
+    }
+  })
+  role: number
 }

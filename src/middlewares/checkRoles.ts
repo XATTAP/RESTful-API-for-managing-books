@@ -6,7 +6,7 @@ import { Role } from "@/utils"
 export default (roles: Role[]) => async (ctx: IKoaContext, next: Next) => {
   try {
     for (const role of roles) {
-      if (ctx.user.rolesbit & role) {
+      if (ctx.user.role & role) {
         return next()
       }
     }
