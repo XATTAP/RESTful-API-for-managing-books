@@ -5,7 +5,7 @@ import jwt, { JwtPayload } from "jsonwebtoken"
 import { IKoaContext } from "@/interfaces"
 import { Op } from "sequelize"
 import { ILoginDTO, IRegisterDTO, IUpdateRoleDTO, IUserVerifyDTO } from "@/routes/users/dtos/index"
-import { NotFoundError, ServerValidationError } from "@/utils/errors"
+import { AuthenticationError, NotFoundError, ServerValidationError } from "@/utils/errors"
 import { Role, generateHash, sendVerifyMail } from "@/utils"
 
 class UserService {
@@ -40,12 +40,12 @@ class UserService {
     const foundUser = await User.scope("withPassword").findOne({ where: { username: body.username } })
 
     if (!foundUser) {
-      throw new NotFoundError("401", "Неверный логин")
+      throw new AuthenticationError("401", "Неверный логин")
     }
 
     const isPassEquals = await bcrypt.compare(body.password, foundUser.password)
     if (!isPassEquals) {
-      throw new ServerValidationError("401", "Неверный пароль")
+      throw new AuthenticationError("401", "Неверный пароль")
     }
 
     const accessToken = jwt.sign({ userId: foundUser.id }, config.server.tokens.accessJWTSecret, { expiresIn: "1d" })
