@@ -19,3 +19,7 @@ CONSOLE_URL = false
 
 #Удалить базу и поднять ее из сидов
 FORCE_DB = false
+
+#Параметры email для рассылки
+EMAIL = testemail@mail.ru
+EMAIL_PASSWORD = test123

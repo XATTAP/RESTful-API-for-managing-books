@@ -9,6 +9,7 @@ async function initSeeds() {
       email: "ii@mail.ru",
       rolesbit: 1,
       password: await generateHash("123456"),
+      isActive: true,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -17,6 +18,7 @@ async function initSeeds() {
       email: "pp@mail.ru",
       rolesbit: 3,
       password: await generateHash("123456"),
+      isActive: true,
       createdAt: new Date(),
       updatedAt: new Date()
     }

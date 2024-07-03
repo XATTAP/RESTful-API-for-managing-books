@@ -20,6 +20,10 @@ const config = {
     password: process.env.PG_PASSWORD || "postgres",
     db: process.env.PG_DATABASE || "postgres",
     timezone: "+00:00"
+  },
+  email: {
+    adress: process.env.EMAIL || "test@mail.ru",
+    password: process.env.EMAIL_PASSWORD || "secret_password_email",
   }
 }
 

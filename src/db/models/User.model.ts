@@ -38,6 +38,11 @@ import {
     @Default(1)
     @Column(DataType.INTEGER)
     rolesbit: number
+
+    @AllowNull(false)
+    @Default(false)
+    @Column(DataType.BOOLEAN)
+    isActive: boolean
   }
   
   export default User
