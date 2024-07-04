@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "b1075a2f-919b-4183-afc5-be1a513a1295",
+		"name": "Test_task",
+		"description": "RESTful API для управления коллекцией книг.\n\nAPI должно позволять пользователям добавлять книги, просматривать список книг, обновлять информацию о книгах и удалять книги. Кроме того, API должно иметь функции для управления пользователями и их ролями с использованием битовых масок.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19294443"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Сreate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNDkzMiwiZXhwIjoxNzIwMDkxMzMyfQ.hJ9qDq8IsjmAT9KU97pXUx8lUKqyrmPnlK29H0F7Ix4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Интересная Книга\",\r\n    \"author\": \"Иванов\",\r\n    \"publicationDate\": \"12-12-2004\",\r\n    \"genres\": [\"мемуары\", \"драма\", \"детектив\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						},
+						"description": "**Добавление книги**\n\n\\- HTTP метод: POST\n\n\\- Эндпоинт: /books\n\n\\- Тело запроса: JSON с полями title, author, publicationDate, genres\n\n\\- Ответ: JSON с данными добавленной книги\n\n\\- Требует аутентификации (только для пользователей с ролью \"администратор\")"
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						},
+						"description": "**Получение списка книг**\n\n\\- HTTP метод: GET\n\n\\- Эндпоинт: /books\n\n\\- Ответ: JSON массив с данными всех книг"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						},
+						"description": "**Получение книги по ID**\n\n\\- HTTP метод: GET\n\n\\- Эндпоинт: /books/:id\n\n\\- Ответ: JSON с данными книги"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNDkzMiwiZXhwIjoxNzIwMDkxMzMyfQ.hJ9qDq8IsjmAT9KU97pXUx8lUKqyrmPnlK29H0F7Ix4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Новое\",\r\n    \"author\": \"Другой\",\r\n    \"publicationDate\": \"12-12-1234\",\r\n    \"genres\": [\"мемуары\", \"драма\", \"детектив\", \"драма\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						},
+						"description": "**Обновление информации о книге**\n\n\\- HTTP метод: PUT\n\n\\- Эндпоинт: /books/:id\n\n\\- Тело запроса: JSON с полями title, author, publicationDate, genres\n\n\\- Ответ: JSON с данными обновленной книги\n\n\\- Требует аутентификации (только для пользователей с ролью \"администратор\")"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNDkzMiwiZXhwIjoxNzIwMDkxMzMyfQ.hJ9qDq8IsjmAT9KU97pXUx8lUKqyrmPnlK29H0F7Ix4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						},
+						"description": "**Удаление книги**\n\n\\- HTTP метод: DELETE\n\n\\- Эндпоинт: /books/:id\n\n\\- Требует аутентификации (только для пользователей с ролью \"администратор\")"
+					},
+					"response": []
+				}
+			],
+			"description": "Запросы, связанные с менеджментом книг."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Семенов Семен\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"ss@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						},
+						"description": "**Регистрация пользователя**\n\n\\- HTTP метод: POST\n\n\\- Эндпоинт: /users/register\n\n\\- Тело запроса: JSON с полями username, password, email\n\n\\- Подтверждение email через письмо\n\n\\- Ответ: JSON с данными зарегистрированного пользователя"
+					},
+					"response": [
+						{
+							"name": "Success Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Семенов Семен\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"ss@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Пользователь Семенов Семен зарегистрирован, осталось подтвердить email\",\n    \"user\": {\n        \"role\": 1,\n        \"isActive\": false,\n        \"id\": 3,\n        \"username\": \"Семенов Семен\",\n        \"password\": \"$2b$10$Vwv.TFFaT2ayCoTKsOCPoOZ8OgFheI/CRvAh4zlI1WZKbJXCEuzrq\",\n        \"email\": \"ss@mail.ru\",\n        \"updatedAt\": \"2024-07-03T11:25:13.752Z\",\n        \"createdAt\": \"2024-07-03T11:25:13.752Z\"\n    }\n}"
+						},
+						{
+							"name": "Fail Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Семенов Семен\",\r\n    \"password\": 12132312,\r\n    \"email\": \"ss@mail.ru\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"400\",\n    \"message\": \"Неверный формат поля password, ожидался string\",\n    \"type\": \"DATA_FORMAT_INVALID\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Петр Петрович\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "**Аутентификация пользователя**\n\n\\- HTTP метод: POST\n\n\\- Эндпоинт: /users/login\n\n\\- Тело запроса: JSON с полями username, password\n\n\\- Ответ: JSON с токеном JWT"
+					},
+					"response": [
+						{
+							"name": "Success Authentication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Петр Петрович\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"вход выполнен успешно!\",\r\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNjEwOSwiZXhwIjoxNzIwMDkyNTA5fQ.YdagkJXYc3Z9ZBCxRB9vdCtyA_O8Ce-XnOeXgNsSFWs\"\r\n}"
+						},
+						{
+							"name": "Fail Authentication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Петр Петрович\",\r\n    \"password\": \"badpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"error\": \"401\",\r\n    \"message\": \"Неверный пароль\",\r\n    \"stack\": \"AuthenticationError: Неверный пароль\\n    at UserService.<anonymous> (C:\\\\Users\\\\Kirill\\\\Documents\\\\My Projects\\\\Test_work\\\\src\\\\routes\\\\users\\\\user.service.ts:48:13)\\n    at Generator.next (<anonymous>)\\n    at fulfilled (C:\\\\Users\\\\Kirill\\\\Documents\\\\My Projects\\\\Test_work\\\\src\\\\routes\\\\users\\\\user.service.ts:5:58)\",\r\n    \"type\": \"AuthenticationError\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNDg0MCwiZXhwIjoxNzIwMDkxMjQwfQ.Slixb25fXGfmYZsiSTTlLBQNmaPxvpLkZZItZcFakU4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "**Получение информации о текущем пользователе**\n\n\\- HTTP метод: GET\n\n\\- Эндпоинт: /users/me\n\n\\- Ответ: JSON с данными текущего пользователя\n\n\\- Требует аутентификации"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcyMDAwNDkzMiwiZXhwIjoxNzIwMDkxMzMyfQ.hJ9qDq8IsjmAT9KU97pXUx8lUKqyrmPnlK29H0F7Ix4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/1/role",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"role"
+							]
+						},
+						"description": "**Изменение роли пользователя**\n\n\\- HTTP метод: PUT\n\n\\- Эндпоинт: /users/:id/role\n\n\\- Тело запроса: JSON с полем role (используйте битовые маски для ролей)\n\n\\- Ответ: JSON с данными обновленного пользователя\n\n\\- Требует аутентификации (только для пользователей с ролью \"администратор\")"
+					},
+					"response": []
+				}
+			],
+			"description": "Запросы, связанные с управлением пользователями."
+		}
+	]
+}
